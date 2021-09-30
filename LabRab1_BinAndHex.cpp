@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <bitset>
 
 using namespace std;
@@ -11,5 +11,7 @@ int main()
 	cin >> a;
 	cout << "В бинарном виде:\t" << bitset<16>(a) << "\n" << endl;
 	cout << "В шестнадцатеричном виде:\t" << hex << a << endl;
+	cout << "bool:\t" << bool(a) << endl;
+	cout << "char:\t" << char(a) << endl;
 	return 0;
 }
