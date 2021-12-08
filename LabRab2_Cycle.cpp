@@ -30,17 +30,21 @@ void task2() {
 }
 void task3() {
     bool stop = false;
-    int num = 0, num_1 = 0;
+    int num = 0, num_1 = 0, amount = 0;
     std::cout << "\tЗадание №3\n";
     while (!stop) {
-        std::cout << "Введите число: ";
+        std::cout << "Введите число(где 0 - выход из цикла): ";
         std::cin >> num;
         num_1 += num;
+        if (num != 0)
+        amount++;
         if (num == 0) {
-            std::cout << "Сумма всех введенных чисел = " << num_1;
+            std::cout << "Сумма всех введенных чисел = " << num_1 <<std::endl;
+            std::cout << "Количество введеных чисел = " << amount <<std::endl;
             stop = true;
         }
     }
+    std::cout << "Среднее арифметическое =" << num_1/amount;
     std::cout << "\n\n";
 }
 
