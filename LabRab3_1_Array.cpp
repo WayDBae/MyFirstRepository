@@ -1,108 +1,107 @@
-﻿#include <iostream>
-#include <stdlib.h>
-#include <algorithm>
-using namespace std;
+#include <iostream>
 
-template< class T >
-void sort(T* arr, int size)
-{
-    T tmp;
-    for (int i = 0; i < size - 1; ++i) // i - номер прохода
-    {
-        for (int j = 0; j < size - 1; ++j) // внутренний цикл прохода
-        {
-            if (arr[j + 1] < arr[j])
-            {
-                tmp = arr[j + 1];
-                arr[j + 1] = arr[j];
-                arr[j] = tmp;
-            }
-        }
-    }
-}
-void task1() {
-    int size;
-    short q;
-    cout << "Ну-ка, и какого размера массив я буду обрабатывать?";
-    cin >> size;
-    if (size > 1000) {
-        cout << "Error" << endl;
-    }
-    cout << "Ясненько..." << endl;
-    int* array = new int[size];
-    cout << "Ну а как заполнять будем?" << endl << "1 - Рандомно" << endl << "2 - Ручками" << endl;
-    cin >> q;
-    if (q == 1)
-    {
-        cout << "Ленивый..." << endl;
-        for (int i = 0; i < size; i++)
-            array[i] = rand() % 1000 - 1;
-    }
-    else if (q == 2)
-    {
-        cout << "Ну попробуй))" << endl;
-        for (int i = 0; i < size; i++)
-            cin >> array[i];
-    }
-    else
-    {
-        cout << "_FATAL_ERROR_" << endl;
-    }
-    cout << endl << "Ну посмотрим, что тут у нас...";
-    for (int i = 0; i < size; i++)
-    {
-        cout << array[i] << endl;
-    }
-    system("pause");
-    system("cls");
-    cout << endl << "Поглядел и хватит!" << endl << "А теперь отсортируем этот бардак!!" << endl;
-    sort(array, size);
-    cout << "Фуух, управился!!!" << endl;
-    for (int i = 0; i < size; i++)
-    {
-        cout << array[i] << endl;
-    }
-    system("pause");
+using std::cout;
+using std::endl;
+using std::cin;
+
+void bubble_Sort(int* Arr_1, int n) {
+
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < (n-1); ++j) {
+			if (Arr_1[j] > Arr_1[j + 1]) {
+				int change = Arr_1[j];
+				Arr_1[j] = Arr_1[j + 1];
+				Arr_1[j + 1] = change;
+			}
+		}
+	}
+	cout << endl;
+
+	cout << "Вот твой отсортированный массив: " << endl;
+	for (int i1 = 0; i1 < n; ++i1) {
+		cout << Arr_1[i1] << endl;
+	}
+	cout << endl;
+
 
 }
-void task2() {
+
+void podscht_Sort(char* Arr_2, int n) {
+
+	int j; int letter = 26;
+	int count[26] = { 0 };
+	for (int i = 0; i < n; i++) {
+		j = int(Arr_2[i] - 'a');
+		count[j]++;
+	}
+	int i = 0;
+	for (j = 0; j < letter;) {
+		if (count[j] > 0) {
+			Arr_2[i] = char((int)('a') + j);
+			i++;
+			count[j]--;
+		}
+		else j++;
+	}
+	cout << endl;
+	cout << "Держи ещё один отсортированный массив. Тебе ещё не надоело массивы тут сортировать?" << endl;
+	for (int i = 0; i < n; i++) {
+		cout << Arr_2[i] << " ";
+	}
+	cout << endl;
+	cout << endl;
+}
+
+
+int main() {
+
+	setlocale(LC_ALL, "Russian");
+
+	int choice = 0;
+	while (true) {
+		cout << "Задания: " << "\n"
+			<< "1. Сортировка числового массива по возрастанию по алгоритму пузырьковой сортировки." << "\n"
+			<< "2. Сортировка символьного массива по возрастанию по алгоритму сортировки подсчётом." << "\n"
+			<< "3. Сортировка числового массива по возрастанию по алгоритму сортировки слиянием." << "\n"
+			<< "4. Выход." << "\n" << endl;
+		cout << "Напиши номер задания для выполнения: "; cin >> choice;
+		switch (choice) {
+		case 1: {
+			int Arr_1[1000], n;
+
+			cout << "А ну-ка давай, вводи, сколько элементов в массиве должно быть: "; cin >> n;
+			if (n >= 10) {
+				cout << "Ой, зря ты столько выбрал(-а). Ну, удачи тебе!" << endl;
+				for (int i = 0; i < n; ++i) {
+					cout << "Arr_2[ " << i << " ] = "; cin >> Arr_1[i];
+				}
+			}
+			else {
+				cout << "Окей, вводи значения: " << endl;
+				for (int i = 0; i < n; ++i) {
+					cout << "Arr_2[ " << i << " ] = "; cin >> Arr_1[i];
+				}
+			}
+
+			bubble_Sort(Arr_1, n);
+			break;
+		}
+
+		case 2: {
+			int n;
+			char Arr_2[1000];
+
+			cout << "Ну и сколько элементов в массиве ты хочешь видеть? Вводи значение: "; cin >> n;
+			cout << "А теперь вводи значения элементов массива: " << endl;
+			for (int i = 0; i < n; ++i) {
+				cout << "Arr_2[ " << i << " ] = "; cin >> Arr_2[i];
+			}
+
+			podscht_Sort(Arr_2, n);
+			break;
+		}
+		}
+
+	}
 
 }
-    void task3() {
-
-    }
-    int main()
-    {
-        setlocale(LC_ALL, "rus");
-        unsigned short choice;
-        cout << "Введите номер задания(1/2/3/0, где 0 это выход): ";
-        cin >> choice;
-        while (choice != 0) {
-            switch (choice)
-            {
-            case 1:
-                task1();
-                cout << "Введите номер задания(1/2/3, где 0 это выход): ";
-                cin >> choice;
-                break;
-            case 2:
-                task2();
-                cout << "Введите номер задания(1/2/3, где 0 это выход): ";
-                cin >> choice;
-                break;
-            case 3:
-                task3();
-                cout << "Введите номер задания(1/2/3, где 0 это выход): ";
-                cin >> choice;
-                break;
-            case 0:
-                break;
-            default:
-                cout << "Неверное число(\n";
-                cout << "Введите номер задания(1/2/3, где 0 это выход): ";
-                cin >> choice;
-                break;
-            }
-        }
-        return 0;
-    }
